@@ -1,4 +1,4 @@
-package com.zero.model.invitation;
+package com.zero.model.invitation.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

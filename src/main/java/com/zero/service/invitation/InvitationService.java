@@ -4,7 +4,7 @@ import com.zero.entity.InvitationInfo;
 import com.zero.entity.RoleInfo;
 import com.zero.entity.UserInfo;
 import com.zero.exception.CustomException;
-import com.zero.model.invitation.LinkInfoRequest;
+import com.zero.model.invitation.request.LinkInfoRequest;
 import com.zero.model.invitation.request.InvitationRequest;
 import com.zero.model.invitation.request.JoinRequest;
 import com.zero.model.invitation.response.InvitationResponse;
@@ -18,7 +18,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
-import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -82,7 +81,7 @@ public class InvitationService {
                 UserInfo userInfo = userService.findUserInfoById(request.getUserId());
                 if(!ObjectUtils.isEmpty(userInfo)) {
                     userInfo.setUseYn("Y");
-                    userService.updateUserStatus(userInfo);
+//                    userService.updateUserStatus(userInfo);
                     roleService.saveRole(RoleInfo.builder().roleName("ME").userId(userInfo.getUserId()).build());
                 }
 
