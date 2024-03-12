@@ -1,7 +1,7 @@
 package com.zero.controller;
 
 import com.zero.config.Response;
-import com.zero.model.invitation.LinkInfoRequest;
+import com.zero.model.invitation.request.LinkInfoRequest;
 import com.zero.model.invitation.request.InvitationRequest;
 import com.zero.model.invitation.request.JoinRequest;
 import com.zero.model.invitation.response.InvitationResponse;

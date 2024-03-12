@@ -1,7 +1,6 @@
 package com.zero.service.user;
 
 import com.zero.entity.UserInfo;
-import com.zero.model.user.request.UserRequest;
 import com.zero.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
