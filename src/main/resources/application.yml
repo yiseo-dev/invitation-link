@@ -1,0 +1,31 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+spring:
+  datasource:
+    url: ${DATABASE_URL}
+    driver-className: org.mariadb.jdbc.Driver
+    username: ${USERNAME}
+    password: ${PASSWORD}
+
+  redis:
+    host: localhost
+    port: 6379
+
+  jpa:
+    open-in-view: true
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      use-new-id-generator-mappings: false
+    show-sql: true
+    properties:
+      hibernate.format_sql: true
+      dialect: org.hibernate.dialect.MariaDB8InnoDBDialect
+
+logging:
+  level:
+    org.hibernate.SQL: debug
