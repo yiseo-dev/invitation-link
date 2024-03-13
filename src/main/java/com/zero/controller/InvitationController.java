@@ -27,7 +27,7 @@ public class InvitationController {
     }
 
     @PatchMapping("/{inviteeId}/join")
-    public ResponseEntity<HttpStatus> joinInvitation(@PathVariable(value = "inviteeId") Integer inviteeId, @RequestBody JoinRequest request) {
+    public ResponseEntity<HttpStatus> joinInvitation(@PathVariable(value = "inviteeId") Long inviteeId, @RequestBody JoinRequest request) {
         request.setUserId(inviteeId);
         invitationService.joinInvitation(request);
         return ResponseEntity.ok(HttpStatus.ACCEPTED);

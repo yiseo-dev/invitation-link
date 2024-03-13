@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class InvitationRequest {
-    private Integer inviterId;
-    private Integer inviteeId;
+    private Long inviterId;
+    private Long inviteeId;
     private String inviteePhoneNumber;
     private String inviteeName;
     private String inviteeEmail;

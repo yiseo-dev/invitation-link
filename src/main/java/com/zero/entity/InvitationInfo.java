@@ -16,17 +16,17 @@ public class InvitationInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "INVITATION_ID")
-    private Integer invitationId;
+    private Long invitationId;
 
-    @Column(name = "INVITER_ID")
-    private Integer inviterId;
+    @Column(name = "INVITER_ID", nullable = false)
+    private Long inviterId;
 
-    @Column(name = "INVITEE_ID")
-    private Integer inviteeId;
+    @Column(name = "INVITEE_ID", nullable = false)
+    private Long inviteeId;
 
-    @Column(name = "INVITATION_STATE")
+    @Column(name = "INVITATION_STATE", nullable = false, length = 4)
     private String invitationState;
 
-    @Column(name = "EXPIRE_DTM")
+    @Column(name = "EXPIRE_DTM", nullable = false, length = 14)
     private String expireDtm;
 }

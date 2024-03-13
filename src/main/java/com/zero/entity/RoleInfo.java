@@ -16,12 +16,12 @@ public class RoleInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ROLE_ID")
-    private Integer roleId;
+    private Long roleId;
 
-    @Column(name = "ROLE_NAME")
+    @Column(name = "ROLE_NAME", nullable = false, length = 4)
     private String roleName;
 
-    @Column(name = "USER_ID")
-    private Integer userId;
+    @Column(name = "USER_ID", nullable = false)
+    private Long userId;
 
 }
