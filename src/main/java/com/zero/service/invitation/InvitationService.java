@@ -71,7 +71,7 @@ public class InvitationService {
     @Transactional
     public void joinInvitation(JoinRequest request) {
         // 링크 유효성 체크
-        if(validLink(request)){
+        if(this.validLink(request)){
             // 링크 만료
             redisUtils.deleteData(INVITATION_LINK_PREFIX.formatted(request.getUserId(),request.getInvitationId()));
             // 초대 정보 조회

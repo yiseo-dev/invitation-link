@@ -20,7 +20,7 @@ public class UserService {
         return userRepository.findByUserId(userId);
     }
 
-    public void updateUserStatus(UserInfo userInfo) {
-        userRepository.update(userInfo);
-    }
+//    public void updateUserStatus(UserInfo userInfo) {
+//        userRepository.update(userInfo);
+//    }
 }

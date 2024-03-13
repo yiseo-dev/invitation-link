@@ -39,12 +39,8 @@ public class InvitationServiceTest {
     @InjectMocks
     private InvitationService invitationService;
 
-    @BeforeEach
-    void setUp(){
-    }
-
     @Test
-    void createInvitationLink_Success(){
+    void createInvitationLink_success(){
         // 객체 설정
         InvitationRequest request = new InvitationRequest(1,2,"01099999999","Choi","aaaa@naver.com");
         UserInfo userInfo = new UserInfo(2,"Choi","aaaa@naver.com","01099999999","N");
@@ -63,7 +59,7 @@ public class InvitationServiceTest {
         assertThat(response).isNotNull();
         assertThat(response.getLink()).isNotEmpty();
 
-        // 모의 객체의 상호작용 검증
+        // 검증
         verify(roleService).findRoleByUserId(anyInt());
         verify(userService).createUserInfo(any(UserInfo.class));
         verify(invitationRepository).save(any(InvitationInfo.class));
@@ -71,7 +67,7 @@ public class InvitationServiceTest {
     }
 
     @Test
-    void createInvitationLink_Failure_WhenRoleNotFound() {
+    void createInvitationLink_failure_whenRoleNotFound() {
         // 객체 설정
         InvitationRequest request = new InvitationRequest(1,2,"01099999999","Choi","aaaa@naver.com");
 
@@ -88,7 +84,7 @@ public class InvitationServiceTest {
     }
 
     @Test
-    void joinInvitation_Success(){
+    void joinInvitation_success(){
         // 객체 설정
         JoinRequest joinRequest = new JoinRequest(2,1,"userId=2&invitationId=1&043618d2-dbb3-4712-85e9-00e950f63685",true);
         InvitationInfo existingInvitationInfo = new InvitationInfo(1,1,2,"S","20240312000000");
@@ -112,7 +108,7 @@ public class InvitationServiceTest {
     }
 
     @Test
-    void joinInvitation_Failure_WhenLinkInvalid() {
+    void joinInvitation_failure_whenLinkInvalid() {
         // 객체 설정
         JoinRequest joinRequest = new JoinRequest(18,1,"userId=18&invitationId=23&811fdcee-b65a-46a1-af6c-398d78a14ddc",true);
 

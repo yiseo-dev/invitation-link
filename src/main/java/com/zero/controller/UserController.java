@@ -26,10 +26,10 @@ public class UserController {
         return ResponseEntity.ok(Response.builder().data(userInfo).build());
     }
 
-    @PatchMapping("/{userId}/status")
-    public ResponseEntity<HttpStatus> updateUserStatus(@PathVariable(value = "userId") Integer userId, UserInfo userInfo) {
-        userInfo.setUserId(userId);
-        userService.updateUserStatus(userInfo);
-        return ResponseEntity.ok(HttpStatus.ACCEPTED);
-    }
+//    @PatchMapping("/{userId}/status")
+//    public ResponseEntity<HttpStatus> updateUserStatus(@PathVariable(value = "userId") Integer userId, UserInfo userInfo) {
+//        userInfo.setUserId(userId);
+//        userService.updateUserStatus(userInfo);
+//        return ResponseEntity.ok(HttpStatus.ACCEPTED);
+//    }
 }
