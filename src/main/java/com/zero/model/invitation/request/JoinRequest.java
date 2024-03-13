@@ -8,8 +8,8 @@ import lombok.Data;
 @Builder
 @AllArgsConstructor
 public class JoinRequest {
-    private Integer userId;
-    private Integer invitationId;
+    private Long userId;
+    private Long invitationId;
     private String link;
     private Boolean isJoin;
 }

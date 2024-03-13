@@ -10,7 +10,7 @@ public class RoleRepository {
     @PersistenceContext
     EntityManager em;
 
-    public RoleInfo findRoleById(Integer userId) {
+    public RoleInfo findRoleById(Long userId) {
         return em.find(RoleInfo.class, userId);
     }
     public void save(RoleInfo roleInfo) { em.persist(roleInfo);

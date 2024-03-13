@@ -16,7 +16,7 @@ public class RoleController {
     private final RoleService roleService;
 
     @GetMapping("/{userId}")
-    public ResponseEntity<Response> findRoleByUserId(@PathVariable(value = "userId") Integer userId) {
+    public ResponseEntity<Response> findRoleByUserId(@PathVariable(value = "userId") Long userId) {
         RoleInfo roleInfo = roleService.findRoleByUserId(userId);
         return ResponseEntity.ok(Response.builder().build());
     }

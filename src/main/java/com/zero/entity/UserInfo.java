@@ -16,18 +16,18 @@ public class UserInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "USER_ID")
-    private Integer userId;
+    private Long userId;
 
-    @Column(name = "USER_NAME")
+    @Column(name = "USER_NAME", nullable = false, length = 50)
     private String userName;
 
-    @Column(name = "USER_EMAIL")
+    @Column(name = "USER_EMAIL", nullable = false, length = 100)
     private String userEmail;
 
-    @Column(name = "USER_PHONE_NUMBER")
+    @Column(name = "USER_PHONE_NUMBER", nullable = false, length = 50)
     private String userPhoneNumber;
 
-    @Column(name = "USE_YN")
+    @Column(name = "USE_YN", nullable = false, length = 2)
     private String useYn;
 
 }

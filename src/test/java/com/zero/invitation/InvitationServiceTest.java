@@ -42,12 +42,12 @@ public class InvitationServiceTest {
     @Test
     void createInvitationLink_success(){
         // 객체 설정
-        InvitationRequest request = new InvitationRequest(1,2,"01099999999","Choi","aaaa@naver.com");
-        UserInfo userInfo = new UserInfo(2,"Choi","aaaa@naver.com","01099999999","N");
-        RoleInfo roleInfo = new RoleInfo(1,"AD",1);
-        InvitationInfo savedInvitationInfo = new InvitationInfo(1,1,2,"S","20240312000000");
+        InvitationRequest request = new InvitationRequest(1L,2L,"01099999999","Choi","aaaa@naver.com");
+        UserInfo userInfo = new UserInfo(2L,"Choi","aaaa@naver.com","01099999999","N");
+        RoleInfo roleInfo = new RoleInfo(1L,"AD",1L);
+        InvitationInfo savedInvitationInfo = new InvitationInfo(1L,1L,2L,"S","20240312000000");
 
-        when(roleService.findRoleByUserId(anyInt())).thenReturn(roleInfo);
+        when(roleService.findRoleByUserId(anyLong())).thenReturn(roleInfo);
         when(userService.createUserInfo(any(UserInfo.class))).thenReturn(userInfo);
         when(invitationRepository.save(any(InvitationInfo.class))).thenReturn(savedInvitationInfo);
         doNothing().when(redisUtils).setData(anyString(), anyString(), anyLong());
@@ -60,7 +60,7 @@ public class InvitationServiceTest {
         assertThat(response.getLink()).isNotEmpty();
 
         // 검증
-        verify(roleService).findRoleByUserId(anyInt());
+        verify(roleService).findRoleByUserId(anyLong());
         verify(userService).createUserInfo(any(UserInfo.class));
         verify(invitationRepository).save(any(InvitationInfo.class));
         verify(redisUtils).setData(anyString(), anyString(), anyLong());
@@ -69,15 +69,15 @@ public class InvitationServiceTest {
     @Test
     void createInvitationLink_failure_whenRoleNotFound() {
         // 객체 설정
-        InvitationRequest request = new InvitationRequest(1,2,"01099999999","Choi","aaaa@naver.com");
+        InvitationRequest request = new InvitationRequest(1L,2L,"01099999999","Choi","aaaa@naver.com");
 
-        when(roleService.findRoleByUserId(anyInt())).thenThrow(new CustomException(NOT_FOUND));
+        when(roleService.findRoleByUserId(anyLong())).thenThrow(new CustomException(NOT_FOUND));
 
         // 예외 검증
         assertThrows(CustomException.class, () -> invitationService.createInvitationLink(request));
 
         // 검증
-        verify(roleService).findRoleByUserId(anyInt());
+        verify(roleService).findRoleByUserId(anyLong());
         verifyNoInteractions(userService);
         verifyNoInteractions(invitationRepository);
         verifyNoInteractions(redisUtils);
@@ -86,31 +86,31 @@ public class InvitationServiceTest {
     @Test
     void joinInvitation_success(){
         // 객체 설정
-        JoinRequest joinRequest = new JoinRequest(2,1,"userId=2&invitationId=1&043618d2-dbb3-4712-85e9-00e950f63685",true);
-        InvitationInfo existingInvitationInfo = new InvitationInfo(1,1,2,"S","20240312000000");
-        UserInfo userInfo = new UserInfo(2,"Choi","aaaa@naver.com","01099999999","N");
+        JoinRequest joinRequest = new JoinRequest(2L,1L,"userId=2&invitationId=1&043618d2-dbb3-4712-85e9-00e950f63685",true);
+        InvitationInfo existingInvitationInfo = new InvitationInfo(1L,1L,2L,"S","20240312000000");
+        UserInfo userInfo = new UserInfo(2L,"Choi","aaaa@naver.com","01099999999","N");
         String savedLink = "userId=2&invitationId=1&043618d2-dbb3-4712-85e9-00e950f63685"; // 예상되는 링크 값
 
         // 모의 객체의 행동 설정
         when(redisUtils.getData("userId=%d&invitationId=%d&".formatted(joinRequest.getUserId(), joinRequest.getInvitationId())))
                 .thenReturn(savedLink);
-        when(invitationRepository.findByUserId(anyInt())).thenReturn(existingInvitationInfo);
-        when(userService.findUserInfoById(anyInt())).thenReturn(userInfo);
+        when(invitationRepository.findByUserId(anyLong())).thenReturn(existingInvitationInfo);
+        when(userService.findUserInfoById(anyLong())).thenReturn(userInfo);
         doNothing().when(redisUtils).deleteData(anyString());
 
         // 테스트 실행
         invitationService.joinInvitation(joinRequest);
 
         // 검증
-        verify(invitationRepository).findByUserId(anyInt());
-        verify(userService).findUserInfoById(anyInt());
+        verify(invitationRepository).findByUserId(anyLong());
+        verify(userService).findUserInfoById(anyLong());
         verify(redisUtils).deleteData(anyString());
     }
 
     @Test
     void joinInvitation_failure_whenLinkInvalid() {
         // 객체 설정
-        JoinRequest joinRequest = new JoinRequest(18,1,"userId=18&invitationId=23&811fdcee-b65a-46a1-af6c-398d78a14ddc",true);
+        JoinRequest joinRequest = new JoinRequest(18L,1L,"userId=18&invitationId=23&811fdcee-b65a-46a1-af6c-398d78a14ddc",true);
 
         // 테스트 실행 및 예외 검증
         assertThrows(CustomException.class, () -> invitationService.joinInvitation(joinRequest));

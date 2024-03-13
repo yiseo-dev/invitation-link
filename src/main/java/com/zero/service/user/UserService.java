@@ -16,7 +16,7 @@ public class UserService {
         return userInfo;
     }
 
-    public UserInfo findUserInfoById(Integer userId) {
+    public UserInfo findUserInfoById(Long userId) {
         return userRepository.findByUserId(userId);
     }
 

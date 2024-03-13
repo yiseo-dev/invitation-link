@@ -15,7 +15,7 @@ public class InvitationRepository {
         return invitationInfo;
     }
 
-    public InvitationInfo findByUserId(Integer invitationId) {
+    public InvitationInfo findByUserId(Long invitationId) {
         return em.find(InvitationInfo.class,invitationId);
     }
 

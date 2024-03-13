@@ -14,7 +14,7 @@ public class UserRepository{
 
     @PersistenceContext
     EntityManager em;
-    public UserInfo findByUserId(Integer userId) {
+    public UserInfo findByUserId(Long userId) {
         return em.find(UserInfo.class,userId);
     }
     public void update(UserInfo userInfo){

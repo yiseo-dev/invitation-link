@@ -20,26 +20,23 @@ public class RoleServiceTest {
     private RoleRepository roleRepository;
     @InjectMocks
     private RoleService roleService;
-    @BeforeEach
-    public void setUp() {
-        RoleInfo expectedRoleInfo = new RoleInfo(1, "AD", 1);
-        when(roleRepository.findRoleById(1)).thenReturn(expectedRoleInfo);
-    }
     @Test
     public void findRoleByUserId(){
+        RoleInfo expectedRoleInfo = new RoleInfo(1L, "AD", 1L);
+        when(roleRepository.findRoleById(1L)).thenReturn(expectedRoleInfo);
         // 테스트 실행
-        RoleInfo roleInfo = roleService.findRoleByUserId(1);
+        RoleInfo roleInfo = roleService.findRoleByUserId(1L);
         // 검증
         assertThat(roleInfo).isNotNull();
         // 검증
-        verify(roleRepository).findRoleById(1);
+        verify(roleRepository).findRoleById(1L);
 
     }
 
     @Test
     public void saveRole() {
         // 객체 설정
-        RoleInfo roleInfo = new RoleInfo(2,"ME",2);
+        RoleInfo roleInfo = new RoleInfo(2L,"ME",2L);
         // 테스트 실행
         roleService.saveRole(roleInfo);
         // 검증

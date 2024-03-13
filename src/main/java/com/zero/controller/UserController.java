@@ -21,7 +21,7 @@ public class UserController {
     }
 
     @GetMapping("/{userId}/info")
-    public ResponseEntity<Response> findUserInfoById(@PathVariable(value = "userId") Integer userId) {
+    public ResponseEntity<Response> findUserInfoById(@PathVariable(value = "userId") Long userId) {
         UserInfo userInfo = userService.findUserInfoById(userId);
         return ResponseEntity.ok(Response.builder().data(userInfo).build());
     }
