@@ -8,6 +8,6 @@ import lombok.Data;
 @Builder
 @AllArgsConstructor
 public class LinkInfoRequest {
-    private Integer userId;
-    private Integer invitationId;
+    private Long userId;
+    private Long invitationId;
 }
